@@ -1,0 +1,519 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Tempo de geração: 21/10/2025 às 17:06
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Banco de dados: `academia`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `cliente`
+--
+
+CREATE TABLE `cliente` (
+  `id_cliente` int(11) NOT NULL,
+  `nome` varchar(250) NOT NULL,
+  `cpf` varchar(14) NOT NULL,
+  `telefone` varchar(15) DEFAULT NULL,
+  `nascimento` date DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `sexo` enum('F','M') DEFAULT NULL,
+  `data_de_matricula` date DEFAULT NULL,
+  `id_endereco` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `cliente`
+--
+
+INSERT INTO `cliente` (`id_cliente`, `nome`, `cpf`, `telefone`, `nascimento`, `email`, `sexo`, `data_de_matricula`, `id_endereco`) VALUES
+(1, 'Ana Silva', '123.456.789-01', '(11) 91234-5678', '2004-05-10', 'ana.silva@email.com', 'F', '2025-01-10', 5),
+(2, 'Bruno Santos', '234.567.890-12', '(11) 92345-6789', '1985-07-20', 'bruno.santos@email.com', 'M', '2025-02-15', 12),
+(3, 'Carla Oliveira', '345.678.901-23', '(12) 93456-7890', '1992-03-18', 'carla.oliveira@email.com', 'F', '2025-03-12', 1),
+(4, 'Daniel Costa', '456.789.012-34', '(13) 94567-8901', '1988-12-05', 'daniel.costa@email.com', 'M', '2025-04-01', 7),
+(5, 'Elisa Ferreira', '567.890.123-45', '(14) 95678-9012', '1995-09-23', 'elisa.ferreira@email.com', 'F', '2025-05-20', 3),
+(6, 'Fábio Almeida', '678.901.234-56', '(15) 96789-0123', '1983-06-11', 'fabio.almeida@email.com', 'M', '2025-06-05', 9),
+(7, 'Gabriela Rodrigues', '789.012.345-67', '(16) 97890-1234', '1991-11-30', 'gabriela.rodrigues@email.com', 'F', '2025-07-14', 2),
+(8, 'Hugo Lima', '890.123.456-78', '(17) 98901-2345', '1987-02-14', 'hugo.lima@email.com', 'M', '2025-08-08', 11),
+(9, 'Isabela Martins', '901.234.567-89', '(18) 99012-3456', '2007-08-19', 'isabela.martins@email.com', 'F', '2025-09-01', 5),
+(10, 'João Pedro', '012.345.678-90', '(19) 90123-4567', '1990-01-25', 'joao.pedro@email.com', 'M', '2025-09-15', 16),
+(11, 'Karen Souza', '111.222.333-44', '(21) 91234-5678', '1994-04-12', 'karen.souza@email.com', 'F', '2025-10-03', 8),
+(12, 'Lucas Ribeiro', '222.333.444-55', '(22) 92345-6789', '1989-09-09', 'lucas.ribeiro@email.com', 'M', '2025-10-10', 14),
+(13, 'Mariana Costa', '333.444.555-66', '(23) 93456-7890', '1992-06-06', 'mariana.costa@email.com', 'F', '2025-11-01', 19),
+(14, 'Nathan Alves', '444.555.666-77', '(24) 94567-8901', '1986-08-08', 'nathan.alves@email.com', 'M', '2025-11-15', 22),
+(15, 'Olivia Lima', '555.666.777-88', '(25) 95678-9012', '1995-12-12', 'olivia.lima@email.com', 'F', '2025-12-01', 6),
+(16, 'Paulo Henrique', '666.777.888-99', '(26) 96789-0123', '1984-03-03', 'paulo.henrique@email.com', 'M', '2025-12-12', 10),
+(17, 'Quésia Ramos', '777.888.999-00', '(27) 97890-1234', '1990-07-07', 'quesia.ramos@email.com', 'F', '2026-01-05', 18),
+(18, 'Rafael Nunes', '888.999.000-11', '(28) 98901-2345', '1988-10-10', 'rafael.nunes@email.com', 'M', '2026-01-20', 4),
+(19, 'Sofia Andrade', '999.000.111-22', '(29) 99012-3456', '1993-05-05', 'sofia.andrade@email.com', 'F', '2026-02-01', 13),
+(20, 'Thiago Fernandes', '000.111.222-33', '(31) 90123-4567', '1987-11-11', 'thiago.fernandes@email.com', 'M', '2026-02-12', 1),
+(21, 'Ursula Pinto', '123.321.123-12', '(32) 91234-5678', '1991-03-15', 'ursula.pinto@email.com', 'F', '2026-03-01', 20),
+(22, 'Vinicius Moraes', '234.432.234-23', '(33) 92345-6789', '1985-06-20', 'vinicius.moraes@email.com', 'M', '2026-03-10', 17),
+(23, 'Wanessa Duarte', '345.543.345-34', '(34) 93456-7890', '1994-09-25', 'wanessa.duarte@email.com', 'F', '2026-04-01', 24),
+(24, 'Xavier Lima', '456.654.456-45', '(35) 94567-8901', '1989-02-02', 'xavier.lima@email.com', 'M', '2026-04-12', 7),
+(25, 'Yasmin Carvalho', '567.765.567-56', '(36) 95678-9012', '1992-07-07', 'yasmin.carvalho@email.com', 'F', '2026-05-01', 15),
+(26, 'Zeca Santos', '678.876.678-67', '(37) 96789-0123', '1986-10-10', 'zeca.santos@email.com', 'M', '2026-05-12', 23),
+(27, 'Amanda Reis', '789.987.789-78', '(38) 97890-1234', '1990-01-20', 'amanda.reis@email.com', 'F', '2026-06-01', 2),
+(28, 'Bruno Lima', '890.098.890-89', '(39) 98901-2345', '1988-03-30', 'bruno.lima@email.com', 'M', '2026-06-12', 9),
+(29, 'Camila Torres', '901.109.901-90', '(40) 99012-3456', '1993-06-15', 'camila.torres@email.com', 'F', '2026-07-01', 11),
+(30, 'Diego Moreira', '012.210.012-01', '(41) 90123-4567', '1987-09-09', 'diego.moreira@email.com', 'M', '2026-07-12', 28),
+(31, 'Felipe Gomes', '321.654.987-00', '(41) 91234-5678', '1990-04-14', 'felipe.gomes@email.com', 'M', '2026-08-01', 21),
+(32, 'Helena Cardoso', '432.765.098-11', '(42) 92345-6789', '1992-09-22', 'helena.cardoso@email.com', 'F', '2026-08-05', 25),
+(33, 'Igor Pinto', '543.876.109-22', '(43) 93456-7890', '1988-03-18', 'igor.pinto@email.com', 'M', '2026-08-10', 29),
+(34, 'Jéssica Lima', '654.987.210-33', '(44) 94567-8901', '1995-07-30', 'jessica.lima@email.com', 'F', '2026-08-15', 24),
+(35, 'Kevin Rocha', '765.098.321-44', '(45) 95678-9012', '1987-11-11', 'kevin.rocha@email.com', 'M', '2026-08-20', 22),
+(36, 'Larissa Ferreira', '876.109.432-55', '(46) 96789-0123', '1991-02-25', 'larissa.ferreira@email.com', 'F', '2026-08-25', 26),
+(37, 'Mateus Souza', '987.210.543-66', '(47) 97890-1234', '1986-06-16', 'mateus.souza@email.com', 'M', '2026-08-30', 27),
+(38, 'Natália Alves', '098.321.654-77', '(48) 98901-2345', '1993-12-05', 'natalia.alves@email.com', 'F', '2026-09-01', 1),
+(39, 'Otávio Martins', '109.432.765-88', '(49) 99012-3456', '1989-05-20', 'otavio.martins@email.com', 'M', '2026-09-05', 23),
+(40, 'Priscila Cardoso', '210.543.876-99', '(50) 90123-4567', '1994-10-10', 'priscila.cardoso@email.com', 'F', '2026-09-10', 30);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `cliente_treino`
+--
+
+CREATE TABLE `cliente_treino` (
+  `id_cliente` int(11) NOT NULL,
+  `id_treino` int(11) NOT NULL,
+  `data_inicio` date NOT NULL,
+  `data_fim` date NOT NULL,
+  `status` enum('Pendente','Pago') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `cliente_treino`
+--
+
+INSERT INTO `cliente_treino` (`id_cliente`, `id_treino`, `data_inicio`, `data_fim`, `status`) VALUES
+(1, 9, '2025-01-28', '2025-04-03', 'Pago'),
+(2, 13, '2025-03-07', '2025-05-10', 'Pago'),
+(3, 1, '2025-01-29', '2025-04-02', 'Pendente'),
+(4, 9, '2025-02-24', '2025-05-01', 'Pago'),
+(5, 3, '2025-02-11', '2025-04-21', 'Pago'),
+(6, 8, '2025-01-13', '2025-03-21', 'Pago'),
+(7, 14, '2025-02-07', '2025-04-16', 'Pendente'),
+(8, 6, '2025-01-31', '2025-04-05', 'Pago'),
+(9, 15, '2025-01-17', '2025-03-25', 'Pago'),
+(10, 4, '2025-01-10', '2025-03-17', 'Pago'),
+(11, 8, '2025-02-16', '2025-04-26', 'Pago'),
+(12, 12, '2025-03-12', '2025-05-18', 'Pendente'),
+(13, 2, '2025-02-19', '2025-04-29', 'Pago'),
+(14, 7, '2025-03-18', '2025-05-20', 'Pago'),
+(15, 14, '2025-02-09', '2025-04-18', 'Pago'),
+(16, 1, '2025-02-04', '2025-04-13', 'Pendente'),
+(17, 3, '2025-03-09', '2025-05-14', 'Pendente'),
+(18, 2, '2025-03-01', '2025-05-08', 'Pago'),
+(19, 6, '2025-03-16', '2025-05-23', 'Pago'),
+(20, 5, '2025-03-22', '2025-05-25', 'Pago'),
+(21, 12, '2025-02-27', '2025-05-01', 'Pendente'),
+(22, 13, '2025-01-15', '2025-03-22', 'Pendente'),
+(23, 15, '2025-01-22', '2025-03-28', 'Pendente'),
+(24, 4, '2025-03-14', '2025-05-20', 'Pago'),
+(25, 10, '2025-02-12', '2025-04-22', 'Pago'),
+(26, 7, '2025-01-20', '2025-03-24', 'Pendente'),
+(27, 11, '2025-03-02', '2025-05-09', 'Pendente'),
+(28, 10, '2025-03-25', '2025-05-30', 'Pendente'),
+(29, 11, '2025-01-25', '2025-03-30', 'Pendente'),
+(30, 5, '2025-02-01', '2025-04-10', 'Pago');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `endereco`
+--
+
+CREATE TABLE `endereco` (
+  `id_endereco` int(11) NOT NULL,
+  `cep` char(9) DEFAULT NULL,
+  `rua` varchar(100) DEFAULT NULL,
+  `numero` int(11) DEFAULT NULL,
+  `complemento` varchar(50) DEFAULT NULL,
+  `bairro` varchar(50) DEFAULT NULL,
+  `cidade` varchar(50) DEFAULT NULL,
+  `estado` char(2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `endereco`
+--
+
+INSERT INTO `endereco` (`id_endereco`, `cep`, `rua`, `numero`, `complemento`, `bairro`, `cidade`, `estado`) VALUES
+(1, '97500-000', 'Rua das Flores', 100, 'Apto 101', 'Centro', 'Alegrete', 'RS'),
+(2, '06010-000', 'Avenida Brasil', 200, 'Casa', 'Vila Nova', 'Osasco', 'SP'),
+(3, '12900-000', 'Rua do Sol', 150, 'Bloco B', 'Jardim São José', 'Bragança Paulista', 'SP'),
+(4, '69000-000', 'Rua das Palmeiras', 300, 'Sala 12', 'Centro', 'Manaus', 'AM'),
+(5, '70040-000', 'Rua das Orquídeas', 400, 'Cobertura', 'Jardim América', 'Brasília', 'DF'),
+(6, '36000-000', 'Rua do Limoeiro', 250, 'Apto 503', 'Vila Aurora', 'Juiz de Fora', 'MG'),
+(7, '89000-000', 'Rua das Acácias', 350, 'Casa', 'Centro', 'Blumenau', 'SC'),
+(8, '30140-000', 'Rua do Pinheiro', 180, 'Sala 05', 'Bairro Alto', 'Belo Horizonte', 'MG'),
+(9, '90040-000', 'Rua das Violetas', 220, 'Apto 502', 'Cidade Baixa', 'Porto Alegre', 'RS'),
+(10, '09900-000', 'Rua das Camélias', 75, 'Casa', 'Jardim das Flores', 'Diadema', 'SP'),
+(11, '17000-000', 'Rua do Cedro', 310, 'Apto 202', 'Centro', 'Bauru', 'SP'),
+(12, '64000-000', 'Rua das Tulipas', 90, 'Casa', 'Vila Industrial', 'Teresina', 'PI'),
+(13, '49000-000', 'Rua das Acácias', 55, 'Sala 01', 'Centro', 'Aracaju', 'SE'),
+(14, '90550-555', 'Rua das Violetas', 555, 'Casa', 'Jardim Botânico', 'Porto Alegre', 'RS'),
+(15, '79000-000', 'Avenida Ipiranga', 600, 'Cobertura', 'Centro', 'Campo Grande', 'MS'),
+(16, '28000-000', 'Rua do Pinho', 77, 'Apto 404', 'Centro', 'Campos dos Goytacazes', 'RJ'),
+(17, '04550-141', 'Rua dos Jacarandás', 141, 'Casa', 'Vila Olímpia', 'São Paulo', 'SP'),
+(18, '22250-151', 'Rua do Laranjal', 151, 'Sala 04', 'Botafogo', 'Rio de Janeiro', 'RJ'),
+(19, '86000-000', 'Rua das Hibiscos', 90, 'Casa', 'Jardim Eldorado', 'Londrina', 'PR'),
+(20, '87700-000', 'Rua do Ipê', 171, 'Apto 301', 'Centro', 'Francisco Beltrão', 'PR'),
+(21, '65000-000', 'Rua das Margaridas', 102, 'Apto 101', 'Centro', 'São Luís', 'MA'),
+(22, '68000-000', 'Rua do Jacarandá', 203, 'Casa', 'Centro', 'Santarém', 'PA'),
+(23, '74800-000', 'Rua do Cedro', 304, 'Sala 02', 'Jardim Goiás', 'Goiânia', 'GO'),
+(24, '44000-000', 'Rua das Orquídeas', 405, 'Casa', 'Centro', 'Feira de Santana', 'BA'),
+(25, '79005-000', 'Rua das Rosas', 506, 'Apto 202', 'Vila Planalto', 'Campo Grande', 'MS'),
+(26, '40000-000', 'Rua do Mar', 607, 'Cobertura', 'Centro', 'Salvador', 'BA'),
+(27, '32000-000', 'Rua das Flores', 708, 'Casa', 'Jardim América', 'Contagem', 'MG'),
+(28, '58000-000', 'Rua do Pinho', 809, 'Sala 01', 'Centro', 'João Pessoa', 'PB'),
+(29, '79005-010', 'Rua das Camélias', 910, 'Apto 101', 'Bairro Novo', 'Campo Grande', 'MS'),
+(30, '88800-000', 'Rua do Cedro', 111, 'Casa', 'Centro', 'Criciúma', 'SC');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `exercicio`
+--
+
+CREATE TABLE `exercicio` (
+  `id_exercicio` int(11) NOT NULL,
+  `nome_exercicio` varchar(150) NOT NULL,
+  `grupo_muscular` varchar(150) DEFAULT NULL,
+  `equipamento` varchar(100) DEFAULT NULL,
+  `descricao` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `exercicio`
+--
+
+INSERT INTO `exercicio` (`id_exercicio`, `nome_exercicio`, `grupo_muscular`, `equipamento`, `descricao`) VALUES
+(1, 'Supino Reto', 'Peito', 'Barra', 'Exercício para fortalecimento do peitoral, realizado no banco com barra.'),
+(2, 'Agachamento', 'Perna', 'Barra', 'Exercício fundamental para quadríceps, glúteos e posterior de coxa.'),
+(3, 'The Hundred', 'Core', 'Colchonete', 'Exercício de respiração e fortalecimento abdominal.'),
+(4, 'Roll Up', 'Abdômen', 'Colchonete', 'Flexão controlada da coluna para fortalecer abdômen e alongar coluna.'),
+(5, 'Burpee', 'Corpo Total', 'Peso Corporal', 'Exercício completo que combina agachamento, flexão e salto.'),
+(6, 'Kettlebell Swing', 'Costas/Glúteos', 'Kettlebell', 'Movimento explosivo de quadril com kettlebell para força e cardio.'),
+(7, 'Cão Olhando Para Baixo', 'Corpo Total', 'Colchonete', 'Postura para alongar coluna e pernas.'),
+(8, 'Postura da Árvore', 'Perna/Core', 'Colchonete', 'Exercício de equilíbrio e fortalecimento de core e pernas.'),
+(9, 'Sprint Intercalado', 'Cardio', 'Bicicleta', 'Pedalar em alta intensidade alternando com baixa intensidade.'),
+(10, 'Subida Simulada', 'Perna/Cardio', 'Bicicleta', 'Simulação de subida para fortalecer quadríceps e glúteos.'),
+(11, 'Alongamento de Posterior de Coxa', 'Perna', 'Colchonete', 'Alongamento focado em isquiotibiais e lombar.'),
+(12, 'Alongamento de Ombros', 'Ombro', 'Colchonete', 'Exercício para mobilidade e relaxamento dos ombros.'),
+(13, 'Flexão de Braço', 'Peito/Braço', 'Peso Corporal', 'Exercício clássico de força para peito e tríceps.'),
+(14, 'Agachamento com Salto', 'Perna/Glúteo', 'Peso Corporal', 'Exercício pliométrico para explosão muscular.'),
+(15, 'Salsa Básica', 'Cardio', 'Peso Corporal', 'Movimento de dança para coordenação e cardio.'),
+(16, 'Reggaeton Step', 'Cardio', 'Peso Corporal', 'Passos de dança para queima de calorias.'),
+(17, 'Crawl', 'Corpo Total', 'Piscina', 'Nado livre para resistência e fortalecimento geral.'),
+(18, 'Peito', 'Peito/Perna', 'Piscina', 'Nado de peito para força de tronco e pernas.'),
+(19, 'Jab e Cross', 'Braço/Peito', 'Saco de Pancadas', 'Sequência básica de socos combinando braços e tronco.'),
+(20, 'Soco Uppercut', 'Braço/Ombro', 'Saco de Pancadas', 'Exercício de explosão para tríceps e ombros.'),
+(21, 'Chute Frontal', 'Perna/Core', 'Peso Corporal', 'Treino de chute para força e coordenação.'),
+(22, 'Golpe de Cotovelo', 'Braço/Tronco', 'Peso Corporal', 'Movimento de autodefesa para tronco e braços.'),
+(23, 'Trote Leve', 'Cardio', 'Peso Corporal', 'Corrida leve para aquecimento e resistência.'),
+(24, 'Sprints Curtos', 'Cardio', 'Peso Corporal', 'Corrida de alta intensidade para explosão e velocidade.'),
+(25, 'Pular Corda', 'Coordenação/Cardio', 'Corda', 'Exercício lúdico para coordenação motora e cardio.'),
+(26, 'Circuito de Obstáculos', 'Corpo Total', 'Peso Corporal', 'Percurso divertido para crianças, estimulando força e equilíbrio.'),
+(27, 'Levantamento Terra', 'Costas/Perna', 'Barra', 'Exercício de força para costas, pernas e glúteos.'),
+(28, 'Supino Inclinado', 'Peito/Braço', 'Barra', 'Variante do supino focando parte superior do peitoral.'),
+(29, 'Sprint na Esteira', 'Cardio/Perna', 'Esteira', 'Corrida de alta intensidade em curtos intervalos.'),
+(30, 'Burpees com Salto', 'Corpo Total', 'Peso Corporal', 'Combinação de agachamento, flexão e salto explosivo.');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `instrutor`
+--
+
+CREATE TABLE `instrutor` (
+  `id_instrutor` int(11) NOT NULL,
+  `nome_instrutor` varchar(250) NOT NULL,
+  `cpf` char(14) NOT NULL,
+  `telefone` varchar(15) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `especialidade` varchar(100) DEFAULT NULL,
+  `data_admissao` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `instrutor`
+--
+
+INSERT INTO `instrutor` (`id_instrutor`, `nome_instrutor`, `cpf`, `telefone`, `email`, `especialidade`, `data_admissao`) VALUES
+(1, 'Carlos Pereira', '123.456.789-10', '(11) 91234-5678', 'carlos.pereira@email.com', 'Musculação', '2023-01-10'),
+(2, 'Fernanda Silva', '234.567.890-21', '(11) 92345-6789', 'fernanda.silva@email.com', 'Pilates', '2023-02-05'),
+(3, 'Bruno Santos', '345.678.901-32', '(12) 93456-7890', 'bruno.santos@email.com', 'Crossfit', '2023-03-12'),
+(4, 'Ana Costa', '456.789.012-43', '(13) 94567-8901', 'ana.costa@email.com', 'Yoga', '2023-04-20'),
+(5, 'Ricardo Almeida', '567.890.123-54', '(14) 95678-9012', 'ricardo.almeida@email.com', 'Spinning', '2023-05-15'),
+(6, 'Juliana Ferreira', '678.901.234-65', '(15) 96789-0123', 'juliana.ferreira@email.com', 'Alongamento', '2023-06-01'),
+(7, 'Marcos Ribeiro', '789.012.345-76', '(16) 97890-1234', 'marcos.ribeiro@email.com', 'Treinamento Funcional', '2023-07-10'),
+(8, 'Carla Mendes', '890.123.456-87', '(17) 98901-2345', 'carla.mendes@email.com', 'Zumba', '2023-08-05'),
+(9, 'Felipe Gomes', '901.234.567-98', '(18) 99012-3456', 'felipe.gomes@email.com', 'Natação', '2023-09-12'),
+(10, 'Patrícia Lima', '012.345.678-09', '(19) 90123-4567', 'patricia.lima@email.com', 'Boxe', '2023-10-01'),
+(11, 'Rodrigo Nunes', '111.222.333-20', '(21) 91234-5678', 'rodrigo.nunes@email.com', 'Artes Marciais', '2023-11-15'),
+(12, 'Sofia Andrade', '222.333.444-31', '(22) 92345-6789', 'sofia.andrade@email.com', 'Treinamento de Corrida', '2023-12-05'),
+(13, 'Thiago Fernandes', '333.444.555-42', '(23) 93456-7890', 'thiago.fernandes@email.com', 'Funcional Kids', '2024-01-10'),
+(14, 'Natália Pinto', '444.555.666-53', '(24) 94567-8901', 'natalia.pinto@email.com', 'Treinamento de Força', '2024-02-20'),
+(15, 'Vinicius Moraes', '555.666.777-64', '(25) 95678-9012', 'vinicius.moraes@email.com', 'HIIT', '2024-03-15');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `treino`
+--
+
+CREATE TABLE `treino` (
+  `id_treino` int(11) NOT NULL,
+  `nome_treino` varchar(150) NOT NULL,
+  `objetivo` varchar(100) DEFAULT NULL,
+  `data_inicio` date DEFAULT NULL,
+  `data_fim` date DEFAULT NULL,
+  `nivel_dificuldade` enum('Iniciante','Intermediário','Avançado') DEFAULT NULL,
+  `frequencia_semanal` tinyint(4) DEFAULT NULL,
+  `id_instrutor` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `treino`
+--
+
+INSERT INTO `treino` (`id_treino`, `nome_treino`, `objetivo`, `data_inicio`, `data_fim`, `nivel_dificuldade`, `frequencia_semanal`, `id_instrutor`) VALUES
+(1, 'Treino Musculação Intensivo', 'Ganho de massa muscular', '2025-10-20', '2025-12-20', 'Intermediário', 4, 1),
+(2, 'Pilates Avançado', 'Alongamento e postura', '2025-10-22', '2025-12-22', 'Avançado', 3, 2),
+(3, 'Crossfit Funcional', 'Resistência e força', '2025-10-21', '2025-12-21', 'Avançado', 5, 3),
+(4, 'Yoga Relax', 'Flexibilidade e relaxamento', '2025-10-23', '2025-12-23', 'Iniciante', 3, 4),
+(5, 'Spinning Cardio', 'Perda de peso', '2025-10-24', '2025-12-24', 'Intermediário', 4, 5),
+(6, 'Alongamento Diário', 'Flexibilidade e prevenção de lesões', '2025-10-25', '2025-12-25', 'Iniciante', 3, 6),
+(7, 'Treinamento Funcional Completo', 'Força e resistência', '2025-10-26', '2025-12-26', 'Intermediário', 4, 7),
+(8, 'Zumba Dance', 'Emagrecimento e diversão', '2025-10-27', '2025-12-27', 'Iniciante', 3, 8),
+(9, 'Natação Avançada', 'Condicionamento físico', '2025-10-28', '2025-12-28', 'Avançado', 4, 9),
+(10, 'Boxe Fitness', 'Defesa pessoal e cardio', '2025-10-29', '2025-12-29', 'Intermediário', 3, 10),
+(11, 'Artes Marciais Completo', 'Autodefesa e disciplina', '2025-10-30', '2025-12-30', 'Avançado', 4, 11),
+(12, 'Treino Corrida de Rua', 'Resistência e condicionamento', '2025-10-31', '2025-12-31', 'Intermediário', 4, 12),
+(13, 'Funcional Kids', 'Coordenação e diversão', '2025-11-01', '2025-12-31', 'Iniciante', 2, 13),
+(14, 'Treinamento de Força Máxima', 'Ganho de força', '2025-11-02', '2025-12-30', 'Avançado', 4, 14),
+(15, 'HIIT Power', 'Queima de gordura e resistência', '2025-11-03', '2025-12-31', 'Avançado', 5, 15);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `treino_exercicio`
+--
+
+CREATE TABLE `treino_exercicio` (
+  `id_treino` int(11) NOT NULL,
+  `id_exercicio` int(11) NOT NULL,
+  `series` int(11) DEFAULT NULL,
+  `repeticoes` int(11) DEFAULT NULL,
+  `carga` decimal(5,2) DEFAULT NULL,
+  `observacoes` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `treino_exercicio`
+--
+
+INSERT INTO `treino_exercicio` (`id_treino`, `id_exercicio`, `series`, `repeticoes`, `carga`, `observacoes`) VALUES
+(1, 1, 3, 10, 35.00, 'Manter postura correta durante o exercício'),
+(1, 2, 4, 12, 45.00, 'Descer até 90 graus no agachamento'),
+(2, 3, 2, 80, 0.00, 'Concentre-se na respiração durante o movimento'),
+(2, 4, 1, 20, 0.00, 'Movimento lento e controlado'),
+(3, 5, 3, 18, 0.00, 'Executar com intensidade máxima'),
+(3, 6, 3, 15, 20.00, 'Manter costas retas durante o movimento'),
+(4, 7, 1, 60, 0.00, 'Respirar profundamente durante a postura'),
+(4, 8, 1, 25, 0.00, 'Equilibrar-se sem perder a postura'),
+(5, 9, 1, 22, 0.00, 'Aumentar a resistência progressivamente'),
+(5, 10, 1, 18, 0.00, 'Simular subida real'),
+(6, 11, 1, 35, 0.00, 'Alongar sem forçar demais'),
+(6, 12, 1, 20, 0.00, 'Respirar profundamente durante o alongamento'),
+(7, 13, 3, 14, 0.00, 'Manter o tronco reto'),
+(7, 14, 3, 12, 0.00, 'Saltos controlados para evitar lesões'),
+(8, 15, 1, 30, 0.00, 'Movimentos leves e contínuos'),
+(8, 16, 1, 28, 0.00, 'Mantenha ritmo constante'),
+(9, 17, 1, 400, 0.00, 'Respiração constante durante o nado'),
+(9, 18, 1, 200, 0.00, 'Movimento uniforme e concentrado'),
+(10, 19, 3, 12, 0.00, 'Manter punhos firmes'),
+(10, 20, 3, 10, 0.00, 'Executar com explosão'),
+(11, 21, 3, 15, 0.00, 'Equilibrar o corpo durante o chute'),
+(11, 22, 3, 12, 0.00, 'Movimento controlado'),
+(12, 23, 1, 32, 0.00, 'Respiração regular'),
+(12, 24, 1, 16, 0.00, 'Velocidade crescente'),
+(13, 25, 2, 60, 0.00, 'Coordenação e ritmo'),
+(13, 26, 2, 10, 0.00, 'Percurso divertido e controlado'),
+(14, 27, 4, 8, 75.00, 'Levantar mantendo postura correta'),
+(14, 28, 4, 10, 55.00, 'Descer controladamente'),
+(15, 29, 5, 20, 0.00, 'Explosão máxima em cada repetição'),
+(15, 30, 5, 15, 0.00, 'Movimento rápido e completo');
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices de tabela `cliente`
+--
+ALTER TABLE `cliente`
+  ADD PRIMARY KEY (`id_cliente`),
+  ADD UNIQUE KEY `cpf` (`cpf`),
+  ADD KEY `id_endereco` (`id_endereco`);
+
+--
+-- Índices de tabela `cliente_treino`
+--
+ALTER TABLE `cliente_treino`
+  ADD PRIMARY KEY (`id_cliente`,`id_treino`),
+  ADD KEY `id_treino` (`id_treino`);
+
+--
+-- Índices de tabela `endereco`
+--
+ALTER TABLE `endereco`
+  ADD PRIMARY KEY (`id_endereco`);
+
+--
+-- Índices de tabela `exercicio`
+--
+ALTER TABLE `exercicio`
+  ADD PRIMARY KEY (`id_exercicio`);
+
+--
+-- Índices de tabela `instrutor`
+--
+ALTER TABLE `instrutor`
+  ADD PRIMARY KEY (`id_instrutor`),
+  ADD UNIQUE KEY `cpf` (`cpf`);
+
+--
+-- Índices de tabela `treino`
+--
+ALTER TABLE `treino`
+  ADD PRIMARY KEY (`id_treino`),
+  ADD KEY `id_instrutor` (`id_instrutor`);
+
+--
+-- Índices de tabela `treino_exercicio`
+--
+ALTER TABLE `treino_exercicio`
+  ADD PRIMARY KEY (`id_treino`,`id_exercicio`),
+  ADD KEY `id_exercicio` (`id_exercicio`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `cliente`
+--
+ALTER TABLE `cliente`
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT de tabela `endereco`
+--
+ALTER TABLE `endereco`
+  MODIFY `id_endereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT de tabela `exercicio`
+--
+ALTER TABLE `exercicio`
+  MODIFY `id_exercicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT de tabela `instrutor`
+--
+ALTER TABLE `instrutor`
+  MODIFY `id_instrutor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT de tabela `treino`
+--
+ALTER TABLE `treino`
+  MODIFY `id_treino` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- Restrições para tabelas despejadas
+--
+
+--
+-- Restrições para tabelas `cliente`
+--
+ALTER TABLE `cliente`
+  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`id_endereco`) REFERENCES `endereco` (`id_endereco`);
+
+--
+-- Restrições para tabelas `cliente_treino`
+--
+ALTER TABLE `cliente_treino`
+  ADD CONSTRAINT `cliente_treino_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`),
+  ADD CONSTRAINT `cliente_treino_ibfk_2` FOREIGN KEY (`id_treino`) REFERENCES `treino` (`id_treino`);
+
+--
+-- Restrições para tabelas `treino`
+--
+ALTER TABLE `treino`
+  ADD CONSTRAINT `treino_ibfk_1` FOREIGN KEY (`id_instrutor`) REFERENCES `instrutor` (`id_instrutor`);
+
+--
+-- Restrições para tabelas `treino_exercicio`
+--
+ALTER TABLE `treino_exercicio`
+  ADD CONSTRAINT `treino_exercicio_ibfk_1` FOREIGN KEY (`id_treino`) REFERENCES `treino` (`id_treino`),
+  ADD CONSTRAINT `treino_exercicio_ibfk_2` FOREIGN KEY (`id_exercicio`) REFERENCES `exercicio` (`id_exercicio`);
+COMMIT;-- ==============================================
+-- CONSULTAS (PESQUISAS) SQL
+-- ==============================================
+
+-- 1. Lista todos os clientes com seus respectivos treinos
+SELECT c.nome AS Cliente, t.nome_treino AS Treino
+FROM cliente c
+INNER JOIN cliente_treino ct ON c.id_cliente = ct.id_cliente
+INNER JOIN treino t ON ct.id_treino = t.id_treino;
+
+-- 2. Conta quantos clientes estão com status "Pendente"
+SELECT status, COUNT(*) AS Total
+FROM cliente_treino
+GROUP BY status;
+
+-- 3. Mostra todos os treinos e seus instrutores responsáveis
+SELECT t.nome_treino, i.nome_instrutor
+FROM treino t
+JOIN instrutor i ON t.id_instrutor = i.id_instrutor;
+
+-- 4. Mostra exercícios do treino de maior dificuldade
+SELECT t.nome_treino, e.nome_exercicio
+FROM treino t
+JOIN treino_exercicio te ON t.id_treino = te.id_treino
+JOIN exercicio e ON te.id_exercicio = e.id_exercicio
+WHERE t.nivel_dificuldade = 'Avançado';
+
+-- 5. Mostra a média de frequência semanal por nível de dificuldade
+SELECT nivel_dificuldade, AVG(frequencia_semanal) AS media_frequencia
+FROM treino
+GROUP BY nivel_dificuldade;
+
+
+
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
